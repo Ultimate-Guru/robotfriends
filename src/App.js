@@ -30,14 +30,13 @@ class App extends Component {
     }
 
     render() {
-        const { robots, filteredRobots } = this.state;
-        const robotsToDisplay = filteredRobots;
+        const { filteredRobots } = this.state;
 
         return (
             <div className='tc'>
                 <h1 className='f1'>RobotFriends</h1>
                 <SearchBox searchChange={this.onSearchChange} />
-                <CardList robots={robotsToDisplay} />
+                <CardList robots={filteredRobots} />
             </div>
         );
     }
