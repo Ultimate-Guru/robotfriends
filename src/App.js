@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { robots } from './robots';
 import CardList from './CardList';
 import SearchBox from './SearchBox';
+import PropTypes from 'prop-types';
 import './App.css';
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
         this.state = {
             robots: robots,
             searchfield: '',
+            filteredRobots: robots,  // Initialize filteredRobots with the full list
             isPending: false,
         };
 
@@ -28,8 +30,8 @@ class App extends Component {
     }
 
     render() {
-        const { robots, searchfield, filteredRobots } = this.state;
-        const robotsToDisplay = searchfield ? filteredRobots : robots;
+        const { robots, filteredRobots } = this.state;
+        const robotsToDisplay = filteredRobots;
 
         return (
             <div className='tc'>
@@ -40,5 +42,17 @@ class App extends Component {
         );
     }
 }
+
+App.propTypes = {
+    robots: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+            username: PropTypes.string,
+            email: PropTypes.string,
+        })
+    ),
+    searchfield: PropTypes.string,
+};
 
 export default App;
